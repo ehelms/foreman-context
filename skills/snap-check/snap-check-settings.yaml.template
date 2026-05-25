@@ -1,0 +1,13 @@
+# Snap Delivery Checker - User Settings
+# Copy this file to snap-check-settings.yaml and fill in your values.
+# Do NOT commit snap-check-settings.yaml (it contains secrets).
+
+# Jira API token - create at https://id.atlassian.com/manage-profile/security/api-tokens
+# IMPORTANT: Use "Create API token" (NOT "Create API token with scopes" — scoped tokens lack transition permissions)
+jira_api_token: ""
+
+# Your Jira/Atlassian email
+jira_email: ""
+
+# ohsnap base URL (internal, requires VPN)
+ohsnap_url: "REPLACE BY OHSNAP REPO HOST URL"
