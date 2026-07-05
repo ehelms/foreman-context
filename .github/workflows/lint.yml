@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  skillsaw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          persist-credentials: false
+      - uses: stbenjam/skillsaw@1bf34517f8c38193814a0ff7199d028897fbf344 # v0
+        with:
+          strict: true
