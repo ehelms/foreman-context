@@ -1,73 +1,61 @@
 # Foreman AI Harness
 
-An AI harness for the Foreman community. This repository curates the resources needed to effectively use AI coding agents across the Foreman ecosystem.
+A [lola](https://github.com/LobsterTrap/lola) module for the Foreman community. This repository curates the resources needed to effectively use AI coding agents across the Foreman ecosystem.
 
-## What This Repository Provides
+## What This Module Provides
 
 - **Skills** - Reusable AI agent skills tailored to Foreman development workflows
-- **Agents** - Agent configurations and instructions for AI coding tools (Claude Code, Copilot, Cursor, Codex, etc.)
+- **Agents** - Specialized agent configurations for Foreman projects
 - **Development Documentation** - References for common development patterns, commands, and workflows across Foreman projects
 - **Architecture and Design Documentation** - Architectural analysis and design documents for Foreman core, Katello, Smart Proxy, the installer, and related components
 
-## Structure
-
-- `AGENTS.md` - Shared AI agent instructions for all compatible tools
-- `CLAUDE.md` - Claude Code-specific instructions
-- `skills/` - Curated AI agent skills
-- `docs/` - Documentation organized by component:
-  - `docs/foreman/` - Foreman core documentation
-  - `docs/installer/` - Installer and Kafo framework documentation
-  - `docs/katello/` - Katello content management documentation
-  - `docs/smart-proxy/` - Smart Proxy architecture documentation
-  - `docs/iop/` - Insights-on-Prem documentation
-
-## Installing Skills
-
-Skills from this repository can be installed into your local AI coding environment using either of the methods below.
-
-> **Note:** Skills are currently being curated. Check the `skills/` directory for available skills.
+## Installation
 
 ### Using Lola
 
-[Lola](https://github.com/RedHatProductSecurity/lola) is a skill and prompt management tool for Claude Code.
-
-Install a skill from this repository:
-
 ```bash
-lola install github:ehelms/foreman-ai-harness/skills/<skill-name>.md
+# Add the module to your lola registry
+lola mod add https://github.com/ehelms/foreman-ai-harness.git
+
+# Install to your AI assistant (e.g. Claude Code)
+lola install foreman-ai-harness
+
+# Update to the latest version
+lola mod update foreman-ai-harness
 ```
 
-Update all installed skills:
+### From a Local Clone
 
 ```bash
-lola update
+git clone https://github.com/ehelms/foreman-ai-harness.git
+lola mod add ./foreman-ai-harness
+lola install foreman-ai-harness
 ```
 
-See the [Lola documentation](https://github.com/RedHatProductSecurity/lola) for more details on managing skills.
+## Structure
 
-### Using Vercel Skills
-
-[Vercel Skills](https://github.com/vercel-labs/skills) provides a CLI for installing and managing Claude Code skills.
-
-Install a skill from this repository:
-
-```bash
-npx @anthropic-ai/skills install github:ehelms/foreman-ai-harness/skills/<skill-name>.md
 ```
-
-Update all installed skills:
-
-```bash
-npx @anthropic-ai/skills update
+foreman-ai-harness/
+├── README.md              # This file
+├── CLAUDE.md              # Claude Code-specific instructions (for direct repo use)
+├── docs/                  # Reference documentation by component
+│   ├── foreman/           # Foreman core documentation
+│   ├── installer/         # Installer and Kafo framework documentation
+│   ├── katello/           # Katello content management documentation
+│   ├── smart-proxy/       # Smart Proxy architecture documentation
+│   └── iop/               # Insights-on-Prem documentation
+└── module/                # Lola module content
+    ├── AGENTS.md           # Module-level agent instructions
+    ├── skills/             # AI agent skills
+    └── agents/             # Subagent definitions
 ```
-
-See the [Vercel Skills documentation](https://github.com/vercel-labs/skills) for more details.
 
 ## Contributing
 
 Contributions are welcome for:
 
 - Adding or improving skills for Foreman development workflows
+- Adding specialized agent definitions
 - Expanding architecture and design documentation
 - Adding development references for Foreman ecosystem projects
-- Improving agent instructions in `AGENTS.md`
+- Improving agent instructions in `module/AGENTS.md`

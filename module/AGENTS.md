@@ -4,22 +4,20 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Repository Overview
 
-This is the **foreman-ai-harness** repository - a lola module containing AI agent skills, documentation, and architectural context for the Foreman ecosystem. It serves as a knowledge base for understanding Foreman's installer architecture, smart proxy design, provisioning orchestration, and related components.
+This is the **foreman-context** repository - a documentation repository containing architectural analysis, design patterns, and technical documentation for the Foreman ecosystem. It serves as a knowledge base for understanding Foreman's installer architecture, smart proxy design, provisioning orchestration, and related components.
 
-## Repository Structure
+## Architecture
 
-- `module/` - Lola module content (skills, agents, instructions)
-  - `module/skills/` - AI agent skills for Foreman development workflows
-  - `module/agents/` - Subagent definitions
-  - `module/AGENTS.md` - Module-level instructions installed with skills
-- `docs/` - Reference documentation organized by component
-  - `docs/foreman/` - Foreman provisioning orchestration design documentation
-  - `docs/installer/` - Comprehensive foreman-installer documentation including Kafo framework, container deployment patterns, and installation workflows
-  - `docs/katello/` - Katello content management documentation
-  - `docs/smart-proxy/` - Smart proxy architecture documentation (overview, development setup, plugin architecture)
-  - `docs/iop/` - IoP (Insights-on-Prem) architecture documentation
+### Repository Structure
+The repository contains documentation and context for various Foreman ecosystem components:
+- `docs/foreman/` - Foreman provisioning orchestration design documentation
+- `docs/installer/` - Comprehensive foreman-installer documentation including Kafo framework, container deployment patterns, and installation workflows
+- `docs/katello/` - Katello content management documentation
+- `docs/smart-proxy/` - Smart proxy architecture documentation (overview, development setup, plugin architecture)
+- `docs/iop/` - IoP (Insights-on-Prem) architecture documentation
+- `skills/` - Curated AI agent skills for Foreman development workflows
 
-## Foreman Ecosystem Components
+### Foreman Ecosystem Components
 
 **Core Infrastructure:**
 - **Foreman**: Rails web application for infrastructure lifecycle management
@@ -152,3 +150,25 @@ Modern deployments (like IoP) use:
 - **Candlepin**: Subscription management (Katello)
 - **Red Hat Cloud APIs**: Cloud integration services
 - **RHCD service**: Cloud connector for remote operations
+
+## Memory System Integration
+
+This repository integrates with Basic Memory (MCP server) for maintaining development context across sessions. The system stores:
+- Project architecture and design patterns
+- Installation scenarios and configuration examples
+- Cross-component integration patterns
+- Development workflow knowledge
+
+Access memory context using `memory://` URIs for related topics and previous discussions.
+
+## Usage
+
+This repository serves as a reference for understanding Foreman ecosystem architecture and design patterns. The documentation covers:
+
+- **Installer Architecture**: Comprehensive analysis of foreman-installer and Kafo framework
+- **Smart Proxy Design**: Architecture documentation for smart proxy and plugin patterns
+- **Provisioning Orchestration**: Design patterns for Foreman provisioning workflows
+- **Container Deployments**: Analysis of containerized installation approaches
+- **IoP Architecture**: Documentation for Insights-on-Prem implementation
+
+The documentation can be used to understand existing systems, plan new features, or onboard developers to the Foreman ecosystem.
