@@ -1,0 +1,33 @@
+{
+  "_comment": "Merge these permissions into ~/.claude/settings.json to run the foreman-review skill without permission prompts.",
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git rev-parse*)",
+      "Bash(git merge-base*)",
+      "Bash(git ls-files*)",
+      "Bash(git ls-tree*)",
+      "Bash(git cat-file*)",
+      "Bash(git rev-list*)",
+      "Bash(git blame*)",
+      "Bash(git remote*)",
+      "Bash(git symbolic-ref*)",
+      "Bash(git config --get*)",
+      "Bash(git worktree list*)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(echo *)",
+      "Bash(cd /home/vagrant/foreman *)",
+      "Bash(cd /home/vagrant/katello *)"
+    ]
+  }
+}
