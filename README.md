@@ -15,7 +15,7 @@ A [lola](https://github.com/LobsterTrap/lola) module for the Foreman community. 
 
 ```bash
 # Add the module to your lola registry
-lola mod add https://github.com/ehelms/foreman-ai-harness.git
+lola mod add https://github.com/theforeman/foreman-ai-harness.git
 
 # Install to your AI assistant (e.g. Claude Code)
 lola install foreman-ai-harness
@@ -27,7 +27,7 @@ lola mod update foreman-ai-harness
 ### From a Local Clone
 
 ```bash
-git clone https://github.com/ehelms/foreman-ai-harness.git
+git clone https://github.com/theforeman/foreman-ai-harness.git
 lola mod add ./foreman-ai-harness
 lola install foreman-ai-harness
 ```
