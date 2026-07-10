@@ -20,8 +20,12 @@ git remote -v | grep theforeman
 
 git fetch <upstream-remote>
 
-# Create a worktree based on <upstream-remote>/master to keep the main working directory clean
-git worktree add /tmp/<plugin_name>-release <upstream-remote>/master
+# Detect the default branch (commonly develop, master, or main)
+git remote show <upstream-remote> | grep 'HEAD branch'
+# Use that branch name in place of <default-branch> below
+
+# Create a worktree based on <upstream-remote>/<default-branch> to keep the main working directory clean
+git worktree add /tmp/<plugin_name>-release <upstream-remote>/<default-branch>
 cd /tmp/<plugin_name>-release
 ```
 
@@ -39,12 +43,16 @@ Read the current version from `lib/<plugin_name>/version.rb` and recent commits/
 # Bump version file (lib/<plugin_name>/version.rb)
 # Edit VERSION = "x.y.z"
 
+# Determine the tag format — check existing tags to see if the repo uses a "v" prefix or bare version numbers
+git tag | sort -V | tail -5
+# Use the same prefix convention as existing tags
+
 git add lib/<plugin_name>/version.rb
 git commit -m "Bump version to x.y.z"
-git tag vx.y.z
-# Push HEAD explicitly since this worktree is in detached-like state (not on local master)
-git push <upstream-remote> HEAD:master
-git push <upstream-remote> vx.y.z
+git tag <tag>   # e.g. v1.2.3 or 1.2.3 depending on the repo convention
+# Push HEAD explicitly since this worktree is in detached-like state (not on local <default-branch>)
+git push <upstream-remote> HEAD:<default-branch>
+git push <upstream-remote> <tag>
 
 # Remove the worktree
 cd -
@@ -80,13 +88,18 @@ gh workflow run bump_packages.yml \
   -f package=MyPackageHere
 ```
 
-After triggering, wait for the automation to create PRs, then find and present them to the user:
+After triggering, poll until the automation's PRs are created **and merged** (may take several minutes). Poll in a loop:
 ```bash
-# Poll until PRs appear (may take a few minutes)
-gh pr list --repo theforeman/foreman-packaging --search "<gem_name>" --json number,title,url
+# Poll until PRs appear and are merged (check every 30s; usually two PRs: rpm + deb)
+while true; do
+  gh pr list --repo theforeman/foreman-packaging \
+    --search "<gem_name>" --state all \
+    --json number,title,url,state,mergedAt
+  sleep 30
+done
 ```
 
-Present the PR links to the user. Usually two PRs per package (rpm + deb). Merge permission matches source repo permissions.
+Present the PR links to the user as soon as they appear. Continue polling and report when each PR is merged. Merge permission matches source repo permissions.
 
 ## Versioning Rules
 
