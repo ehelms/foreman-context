@@ -50,9 +50,8 @@ git tag | sort -V | tail -5
 git add lib/<plugin_name>/version.rb
 git commit -m "Bump version to x.y.z"
 git tag -a <tag> -m "Release <tag>"   # e.g. v1.2.3 or 1.2.3 depending on the repo convention; always use annotated tags (-a)
-# Push HEAD explicitly since this worktree is in detached-like state (not on local <default-branch>)
-git push <upstream-remote> HEAD:<default-branch>
-git push <upstream-remote> <tag>
+# Push HEAD and the annotated tag together; --follow-tags pushes annotated tags reachable from the pushed commits
+git push --follow-tags <upstream-remote> HEAD:<default-branch>
 
 # Remove the worktree
 cd -
