@@ -87,18 +87,20 @@ gh workflow run bump_packages.yml \
   -f package=MyPackageHere
 ```
 
-After triggering, poll until the automation's PRs are created **and merged** (may take several minutes). Poll in a loop:
+After triggering, wait for the workflow run to complete, then find and present the PRs it created:
 ```bash
-# Poll until PRs appear and are merged (check every 30s; usually two PRs: rpm + deb)
-while true; do
-  gh pr list --repo theforeman/foreman-packaging \
-    --search "<gem_name>" --state all \
-    --json number,title,url,state,mergedAt
-  sleep 30
-done
+# Find the run that was just triggered
+gh run list --repo theforeman/foreman-packaging --workflow bump_packages.yml --limit 5
+# Watch it to completion
+gh run watch <run-id> --repo theforeman/foreman-packaging
+
+# Once the run finishes, find the PRs it opened (usually two: rpm + deb)
+gh pr list --repo theforeman/foreman-packaging \
+  --search "<gem_name>" --state all \
+  --json number,title,url,state,mergedAt
 ```
 
-Present the PR links to the user as soon as they appear. Continue polling and report when each PR is merged. Merge permission matches source repo permissions.
+Present the PR links to the user. Merge permission matches source repo permissions.
 
 ## Versioning Rules
 
