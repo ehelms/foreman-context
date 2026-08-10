@@ -13,7 +13,7 @@ description: >
 Commit changes on a new branch and write a filled-out PR description to a
 local file — without pushing or opening a PR on GitHub.
 
-## Step 1 — Assess state and commit
+## Step 1 — Assess state and branch
 
 Run in a single parallel batch:
 
@@ -33,15 +33,14 @@ If on `develop`, `master` or `main`, create a feature branch from the `--stat` o
 git checkout -b <branch-name>
 ```
 
-Stage relevant files (prefer specific paths over `git add -A`) and commit.
-Use imperative mood, one line under 72 characters, focused on *why*.
+## Step 2 — Commit using the commit skill
 
-```bash
-git add <files>
-git commit -m "<message>"
-```
+Invoke the `foreman-commit` skill (`/foreman-commit`) to stage and commit the changes.
+It will examine the changes, review recent commit history, draft a
+commit message formatted per the seven rules of a great
+commit message, and create the commit.
 
-## Step 2 — Find the PR template
+## Step 3 — Find the PR template
 
 Check for a PR template in one compound command:
 
@@ -57,7 +56,7 @@ If `NO_TEMPLATE`, use this fallback:
 #### Test plan
 ```
 
-## Step 3 — Write the PR description
+## Step 4 — Write the PR description
 
 Gather context — use `--stat` to avoid pulling the full diff into context:
 
