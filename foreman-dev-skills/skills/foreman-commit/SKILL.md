@@ -7,8 +7,7 @@ description: >-
 
 # Foreman Commit
 
-Write a git commit message that follows the seven rules from
-[How to Write a Git Commit Message](https://cbea.ms/git-commit/).
+Write a git commit message that follows the seven rules of a great git commit message.
 
 ## Workflow
 
