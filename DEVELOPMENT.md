@@ -13,6 +13,8 @@ foreman-ai-harness/
         SKILL.md                # PR preparation skill
       foreman-plugin-release/
         SKILL.md                # Plugin release skill
+      foreman-ui-test/
+        SKILL.md                # RTL / Capybara UI tests
     agents/                     # Agent configurations
   docs/                         # Architecture and design docs
     foreman/
