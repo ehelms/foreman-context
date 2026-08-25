@@ -69,14 +69,15 @@ Do not mock a child and then assert that the mock rendered. That tests the mock,
 
 If the component uses `react-router-dom` `Link` or `useHistory`, wrap with `MemoryRouter`.
 
-`IntegrationTestHelper` and `shallow` / `mount` / `render` from `enzyme` or `@theforeman/test` are Enzyme. Do not use them in new tests.
+Write new tests with RTL (`rtlHelpers`, `getByRole`, `userEvent`). Use that instead of Enzyme: `IntegrationTestHelper` and `shallow` / `mount` / `render` from `enzyme` or `@theforeman/test`.
 
 ## Replacing Enzyme or snapshots
 
-1. If the component is unused, delete it and its tests.
-2. If it still imports PF3 (`patternfly-react`), rewrite the component to PF5 (`@patternfly/react-core`) first, then write the RTL test.
-3. Cover at least what the old test covered (text, conditionals, callbacks), using roles and behavior instead of wrapper internals.
-4. Drop leftover `.snap` files and unused `__mocks__` / `jest.mock` calls.
+1. If the component is deprecated (for removal), stop. Do not rewrite its tests. Look for `@deprecated`, deprecation warnings, or comments that it is scheduled for removal.
+2. If the component is unused and not deprecated, delete it and its tests.
+3. If the component imports PF3 (`patternfly-react`), stop with an error. Remaining PF3 is expected only on deprecated UI. Do not convert the test and do not rewrite PF3 as part of this skill.
+4. Cover at least what the old test covered (text, conditionals, callbacks), using roles and behavior instead of wrapper internals.
+5. Drop leftover `.snap` files and unused `__mocks__` / `jest.mock` calls.
 
 ## After writing tests
 
