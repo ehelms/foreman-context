@@ -73,9 +73,9 @@ Write new tests with RTL (`rtlHelpers`, `getByRole`, `userEvent`). Use that inst
 
 ## Replacing Enzyme or snapshots
 
-1. If the component is deprecated (for removal), stop. Do not rewrite its tests. Look for `@deprecated`, deprecation warnings, or comments that it is scheduled for removal.
-2. If the component is unused and not deprecated, delete it and its tests.
-3. If the component imports PF3 (`patternfly-react`), stop with an error. Remaining PF3 is expected only on deprecated UI. Do not convert the test and do not rewrite PF3 as part of this skill.
+1. Check for deprecation first. Look for `deprecate(` or `deprecateObjectProperty(` from `DeprecationService` (`foremanReact/common/DeprecationService`). Also look for `@deprecated` and comments that it is scheduled for removal. If any of those are present, stop and leave the existing tests as they are.
+2. Missing imports in this repository do not mean the component is unused. Plugins live in other repositories and import Foreman core via `foremanReact`. Delete a component and its tests only when it is plugin-local and that plugin has no remaining imports (including barrel `index.js` files and slot/fill registration). If it is core UI, or you cannot prove it is unused, skip deletion and convert the test instead.
+3. If the component imports PF3 (`patternfly-react`), stop with an error. Remaining PF3 is expected only on deprecated UI. Leave the Enzyme test in place; this skill does not rewrite PF3.
 4. Cover at least what the old test covered (text, conditionals, callbacks), using roles and behavior instead of wrapper internals.
 5. Drop leftover `.snap` files and unused `__mocks__` / `jest.mock` calls.
 
